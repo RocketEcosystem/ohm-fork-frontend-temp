@@ -1,27 +1,24 @@
+"use client";
 import Link from "next/link";
+import React from "react";
+import ConnectButton from "./ConnectButton";
 
 const Navbar = () => {
   return (
     <div className="px-2 md:px-6 mb-3 md:mb-0">
-      <div className="flex justify-between pt-[33px] pl-[9px]">
+      <div className="flex justify-between">
         <div>
           <Link href="/">
             <img src="/images/logo.png" alt="" />
           </Link>
           <div className="text-white">
-            <Link className="underline" href="https://www.juice.fun/">
+            <Link className="underline" href="/">
               daos
             </Link>
-            <Link
-              className="underline ml-[11px]"
-              href="https://x.com/juicedotfun"
-            >
+            <Link className="underline ml-[11px]" href="https://x.com/juicedotfun">
               twitter
             </Link>
-            <Link
-              className="underline ml-[11px]"
-              href="https://t.me/juicedotfun"
-            >
+            <Link className="underline ml-[11px]" href="https://t.me/juicedotfun">
               telegram
             </Link>
             <Link className="underline block" href="https://docs.juice.fun/">
@@ -30,9 +27,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="mt-6">
-          <Link className="text-white" href="/">
-            [ connect wallet ]
-          </Link>
+          <ConnectButton />
         </div>
       </div>
     </div>
