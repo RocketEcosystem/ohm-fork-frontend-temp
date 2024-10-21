@@ -6,12 +6,12 @@ import BigNumber from "bignumber.js";
 
 export const getBondDepositoryContract = async (contractAddress: string, BrowserProvider: ethers.BrowserProvider) => {
     const signer = await BrowserProvider.getSigner();
-    return new ethers.Contract(contractAddress, ABI['factory'], signer) as unknown as OlympusBondDepositoryV2;
+    return new ethers.Contract(contractAddress, ABI['OlympusBondDepositoryV2'], signer) as unknown as OlympusBondDepositoryV2;
 }
 
 export const getBondingCalculatorContract = async (contractAddress: string, BrowserProvider: ethers.BrowserProvider) => {
     const signer = await BrowserProvider.getSigner();
-    return new ethers.Contract(contractAddress, ABI['factory'], signer) as unknown as OlympusBondingCalculator;
+    return new ethers.Contract(contractAddress, ABI['OlympusBondingCalculator'], signer) as unknown as OlympusBondingCalculator;
 }
 
 //////////DEPOSITORY//////////

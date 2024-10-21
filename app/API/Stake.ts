@@ -7,7 +7,7 @@ import BigNumber from "bignumber.js";
 
 export const getStakingContract = async (contractAddress: string, BrowserProvider: ethers.BrowserProvider) => { 
     const signer = await BrowserProvider.getSigner();
-    return new ethers.Contract(contractAddress, ABI['factory'], signer) as unknown as OlympusStaking; 
+    return new ethers.Contract(contractAddress, ABI['OlympusStaking'], signer) as unknown as OlympusStaking; 
 }
 
 export const stake = async (
