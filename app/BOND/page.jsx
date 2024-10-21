@@ -1,9 +1,48 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { useWeb3Modal, useWeb3ModalProvider, useWeb3ModalAccount } from '@web3modal/ethers/react'
+import BigNumber from "bignumber.js";
+import { deposit } from "../API/Bond";
+import { contracts } from '../Data/Contracts';
 
 const STAKE = () => {
   const container = useRef();
+
+  const { walletProvider } = useWeb3ModalProvider()
+  const { address, chainId, isConnected } = useWeb3ModalAccount();
+
+  function getActionTitle() {
+    let res = (isConnected) ? 'BUY BOND' : 'CONNECT WALLET';
+    return res;
+  }
+  async function onActionClick() {
+    if(!isConnected){
+      const { open } = useWeb3Modal()
+      open();
+    }else{
+      _deposit();
+    }
+  }
+  //aka "buy bond"
+  async function _deposit() {
+    //TODO: where do [ID, MAXPRICE, REFERRAL] come from?
+    const id = '0';//TODO
+    const amount = BigNumber(document.getElementById('amountInput').value);
+    const maxPrice = BigNumber('0');//TODO
+    const user = address;
+    const referral = '';//TODO
+
+    const tx = await deposit(
+      contracts['BondDepository'], 
+      walletProvider, 
+      id, 
+      amount, 
+      maxPrice, 
+      user, 
+      referral
+    );
+  }
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -107,7 +146,7 @@ const STAKE = () => {
               className="w-full bg-[#ffffff10] h-[35px] 2xl:h-14 border rounded-[6px] pl-2 pr-16 text-base 2xl:text-2xl"
               type="text"
               name=""
-              id=""
+              id="amountInput"
               defaultValue={"1,000,000"}
             />
             <button className="flex items-center gap-1 absolute top-0 bottom-0 my-auto right-2 text-base 2xl:text-xl">
@@ -126,9 +165,9 @@ const STAKE = () => {
             You will receive ~25 ETH worth of locked SPX
           </p>
 
-          <button className="w-[90%] flex justify-center mx-auto mb-5 h-10 2xl:h-16 bg-[#999999] relative rounded ">
+          <button onClick={onActionClick} className="w-[90%] flex justify-center mx-auto mb-5 h-10 2xl:h-16 bg-[#999999] relative rounded ">
             <span className="bg-white text-black absolute top-0 right-0 left-0 h-8 2xl:h-12 flex items-center justify-center rounded  text-lg 2xl:text-2xl">
-              BUY BOND
+              {getActionTitle()}
             </span>
           </button>
           <div className="text-base 2xl:text-xl">
