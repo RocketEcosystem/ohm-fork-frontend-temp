@@ -50,6 +50,30 @@ export const deposit = async (
     }
 }
 
+export const close = async (
+    contractAddress: string,
+    walletProvider: ethers.Eip1193Provider,
+    id: number | string
+) => {
+    const ethersProvider = new BrowserProvider(walletProvider);
+    const contract = await getBondDepositoryContract(contractAddress, ethersProvider);
+
+    try {
+        const gas = await contract.estimateGas.close(
+            id
+        );
+        const tx = await contract.close(
+            id,
+            { gasLimit: gas.times(1.1).toFixed(0) }
+        );
+        if (tx) {
+            console.log('close success!')
+        }
+    } catch (e) {
+        console.log('close error:', e);
+    }
+}
+
 export const create = async (
     contractAddress: string,
     walletProvider: ethers.Eip1193Provider,
