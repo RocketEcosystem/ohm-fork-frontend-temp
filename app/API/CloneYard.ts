@@ -1,4 +1,3 @@
-import { factory } from "../Data/Contracts";
 import type { CloneYard } from "../Typings";
 import { BrowserProvider } from "ethers";
 import BigNumber from "bignumber.js";

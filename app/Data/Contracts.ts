@@ -1,5 +1,3 @@
-export const factory = '0xcED7b1369a5689CE6E057d0C7A40b79791EBfF02';
-
 export const contracts: { [key: string]: string } = {
     Factory: '0xcED7b1369a5689CE6E057d0C7A40b79791EBfF02',
     OlympusStaking: '0x35f86BBd1A0204d5b1eDAFa28d5D57B6d8C7a5ce',

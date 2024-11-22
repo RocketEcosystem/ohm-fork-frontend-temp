@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
 import { ABI } from "../Data/ABI";
-import { factory } from "../Data/Contracts";
 import type { Distributor } from "../Typings";
 import { BrowserProvider } from "ethers";
 import BigNumber from "bignumber.js";
