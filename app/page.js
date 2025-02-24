@@ -1,3 +1,4 @@
+import TopBarScrolling from "@/components/TopBarScrolling";
 import Link from "next/link";
 
 export default function Home() {
@@ -6,7 +7,20 @@ export default function Home() {
       <Link className="text-white flex justify-center" href="/Create">
         [ create new vault ]
       </Link>
-
+      {/* trending slider */}
+      <div className="flex items-center gap-4 mt-4">
+        <div className="w-[24%] 2xl:w-[18%] xl:w-[14%] lg:w-[14%]">
+          <h4 className="text-white 2xl:text-[26px] xl:text-[23px] lg:text-[23px] flex gap-3 bg-[#0B0B12] z-[99999] text-[14px]">
+            <span className="text-[#ffde30] 2xl:text-[26px] xl:text-[23px] lg:text-[23px] font-bold text-[14px]">
+              Trending
+            </span>{" "}
+            24hr
+          </h4>
+        </div>
+        <div className="2xl:w-[82%] xl:w-[86%] lg:w-[86%] w-[70%]">
+          <TopBarScrolling />
+        </div>
+      </div>
       <div className="flex flex-col md:flex-row gap-5 mt-7 mb-8">
         <div className="home-cardBg h-[469px] 2xl:h-[700px] w-full p-5">
           <div className="flex text-white items-center text-[11px] gap-[5px]">
